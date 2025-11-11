@@ -99,7 +99,7 @@ export default function Auth() {
           <div className="flex justify-center mb-4">
             <Server className="w-12 h-12 text-primary" />
           </div>
-          <CardTitle className="text-3xl font-bold glow-text">Welcome to TechHost</CardTitle>
+          <CardTitle className="text-3xl font-bold glow-text">Welcome to SkNode</CardTitle>
           <CardDescription>Sign in or create an account to get started</CardDescription>
         </CardHeader>
 

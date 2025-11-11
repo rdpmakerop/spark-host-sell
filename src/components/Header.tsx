@@ -33,7 +33,7 @@ export const Header = () => {
       <div className="container mx-auto px-4 py-4 flex items-center justify-between">
         <Link to="/" className="flex items-center gap-2 group">
           <Server className="w-8 h-8 text-primary group-hover:text-accent transition-colors" />
-          <span className="text-2xl font-bold glow-text">TechHost</span>
+          <span className="text-2xl font-bold glow-text">SkNode</span>
         </Link>
 
         <nav className="flex items-center gap-4">
