@@ -4,8 +4,7 @@ import { Header } from "@/components/Header";
 import { ProductCard } from "@/components/ProductCard";
 import { ParticleField } from "@/components/ParticleField";
 import { Button } from "@/components/ui/button";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Server, Box, Zap } from "lucide-react";
+import { Server, Zap } from "lucide-react";
 
 interface Product {
   id: string;
@@ -52,7 +51,6 @@ const Index = () => {
   }, []);
 
   const vpsProducts = products.filter(p => p.type === 'vps');
-  const mcProducts = products.filter(p => p.type === 'mc_server');
 
   return (
     <div className="min-h-screen relative">
@@ -63,10 +61,10 @@ const Index = () => {
       <section className="relative z-10 pt-32 pb-20 px-4">
         <div className="container mx-auto text-center max-w-4xl">
           <h1 className="text-5xl md:text-7xl font-bold mb-6 glow-text animate-float">
-            Premium VPS & Minecraft Servers
+            Premium VPS Hosting
           </h1>
           <p className="text-xl md:text-2xl text-muted-foreground mb-8">
-            High-performance hosting solutions and custom server packages
+            High-performance hosting solutions for your applications
           </p>
           <div className="flex flex-wrap gap-4 justify-center">
             <Button 
@@ -96,7 +94,7 @@ const Index = () => {
               <p className="text-muted-foreground">NVMe SSDs and premium network infrastructure</p>
             </div>
             <div className="gradient-card p-6 rounded-lg border border-border/50 text-center hover:border-primary/50 transition-all">
-              <Box className="w-12 h-12 text-primary mx-auto mb-4" />
+              <Server className="w-12 h-12 text-primary mx-auto mb-4" />
               <h3 className="text-xl font-bold mb-2">Ready to Deploy</h3>
               <p className="text-muted-foreground">Pre-configured setups with instant delivery</p>
             </div>
@@ -107,64 +105,27 @@ const Index = () => {
       {/* Products Section */}
       <section id="products" className="relative z-10 py-20 px-4">
         <div className="container mx-auto max-w-7xl">
-          <h2 className="text-4xl font-bold text-center mb-12 glow-text">Choose Your Solution</h2>
+          <h2 className="text-4xl font-bold text-center mb-12 glow-text">VPS Hosting Plans</h2>
           
-          <Tabs defaultValue="vps" className="w-full">
-            <TabsList className="grid w-full max-w-md mx-auto grid-cols-2 mb-12">
-              <TabsTrigger value="vps" className="flex items-center gap-2">
-                <Server className="w-4 h-4" />
-                VPS Hosting
-              </TabsTrigger>
-              <TabsTrigger value="mc" className="flex items-center gap-2">
-                <Box className="w-4 h-4" />
-                MC Servers
-              </TabsTrigger>
-            </TabsList>
-
-            <TabsContent value="vps" className="mt-0">
-              {loading ? (
-                <div className="text-center py-12">
-                  <p className="text-muted-foreground">Loading products...</p>
-                </div>
-              ) : (
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                  {vpsProducts.map((product) => (
-                    <ProductCard
-                      key={product.id}
-                      id={product.id}
-                      name={product.name}
-                      description={product.description}
-                      type={product.type}
-                      price={product.price}
-                      features={product.features}
-                    />
-                  ))}
-                </div>
-              )}
-            </TabsContent>
-
-            <TabsContent value="mc" className="mt-0">
-              {loading ? (
-                <div className="text-center py-12">
-                  <p className="text-muted-foreground">Loading products...</p>
-                </div>
-              ) : (
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                  {mcProducts.map((product) => (
-                    <ProductCard
-                      key={product.id}
-                      id={product.id}
-                      name={product.name}
-                      description={product.description}
-                      type={product.type}
-                      price={product.price}
-                      features={product.features}
-                    />
-                  ))}
-                </div>
-              )}
-            </TabsContent>
-          </Tabs>
+          {loading ? (
+            <div className="text-center py-12">
+              <p className="text-muted-foreground">Loading products...</p>
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {vpsProducts.map((product) => (
+                <ProductCard
+                  key={product.id}
+                  id={product.id}
+                  name={product.name}
+                  description={product.description}
+                  type={product.type}
+                  price={product.price}
+                  features={product.features}
+                />
+              ))}
+            </div>
+          )}
         </div>
       </section>
 
