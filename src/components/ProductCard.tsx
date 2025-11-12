@@ -2,10 +2,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Check, Server, Box } from "lucide-react";
-import { useState } from "react";
-import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
-import { useNavigate } from "react-router-dom";
 
 interface ProductCardProps {
   id: string;
@@ -17,38 +14,8 @@ interface ProductCardProps {
 }
 
 export const ProductCard = ({ id, name, description, type, price, features }: ProductCardProps) => {
-  const [isLoading, setIsLoading] = useState(false);
-  const navigate = useNavigate();
-
-  const handleOrder = async () => {
-    const { data: { user } } = await supabase.auth.getUser();
-    
-    if (!user) {
-      toast.error("Please login to place an order");
-      navigate("/auth");
-      return;
-    }
-
-    setIsLoading(true);
-    
-    const { error } = await supabase
-      .from('orders')
-      .insert({
-        user_id: user.id,
-        product_id: id,
-        total_price: price,
-        status: 'pending'
-      });
-
-    setIsLoading(false);
-
-    if (error) {
-      toast.error("Failed to place order");
-      return;
-    }
-
-    toast.success("Order placed successfully!");
-    navigate("/orders");
+  const handleOrder = () => {
+    toast.success("Thank you for your interest! We'll contact you shortly.");
   };
 
   const Icon = type === 'vps' ? Server : Box;
@@ -84,10 +51,9 @@ export const ProductCard = ({ id, name, description, type, price, features }: Pr
         </div>
         <Button 
           onClick={handleOrder}
-          disabled={isLoading}
           className="w-full bg-primary hover:bg-accent text-primary-foreground font-semibold"
         >
-          {isLoading ? 'Processing...' : 'Order Now'}
+          Order Now
         </Button>
       </CardFooter>
     </Card>
